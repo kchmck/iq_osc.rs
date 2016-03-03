@@ -1,0 +1,4 @@
+[package]
+name = "quad_osc"
+version = "1.0.0"
+authors = ["Mick Koch <mick@kochm.co>"]
