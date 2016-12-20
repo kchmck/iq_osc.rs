@@ -3,13 +3,13 @@
 //! > f(t) = cos(θ<sub>0</sub> + ωt) = cos Φ(t),
 //!
 //! an oscillator is defined here to evaluate f(0), f(1), f(2), ... in sequence to
-//! generate a sinusoidal signal. Further, a quadrature oscillator also evaluates
-//! g(t) = sin(Φ(t)) at each step for the quadrature signal.
+//! generate a sinusoidal signal. Further, a *quadrature* oscillator also evaluates
+//! g(t) = sin Φ(t) at each step for the quadrature signal.
 //!
-//! Computing these trig functions at each evaluation of f(t) and g(t) can be costly with
-//! a high sample rate or within a tight loop. As an alternative, this crate implements a
-//! quadrature oscillator that replaces the 2 trig function calls at each evaluation with
-//! 6 arithmetic operations (4 multiplies, 1 addition, and 1 subtraction.)
+//! Calling out to these trig functions at each evaluation of f(t) and g(t) can be costly
+//! with a high sample rate or within a tight loop. As an alternative, this crate
+//! implements a quadrature oscillator that replaces the 2 trig function calls at each
+//! evaluation with 6 arithmetic operations (4 multiplies, 1 addition, and 1 subtraction.)
 //!
 //! ## Theory
 //!
@@ -37,9 +37,11 @@
 //!
 //! and similarly for the quadrature signal,
 //!
-//! > g(t) = sin(Φ(t - 1) + ω) = sin(Φ(t - 1))cos(ω) + cos(Φ(t - w))sin(ω)
+//! > g(t) = sin(Φ(t - 1) + ω) = sin(Φ(t - 1))cos(ω) + cos(Φ(t - 1))sin(ω)
 //!
-//! These are the two equations computed at each evaluation in this implementation.
+//! If we compute sin ω, cos ω, sin θ<sub>0</sub>, and cos θ<sub>0</sub> at
+//! initialization, then we can compute f(t) and g(t) for t = 0, 1, 2, ... using just the
+//! arithmetic in the above equations.
 //!
 //! ## Error Accumulation
 //!
@@ -47,9 +49,9 @@
 //! sine/cosine evaulations will slowly degrade over phase steps. Using a very small phase
 //! step or running a `QuadOsc` through many, many cycles will make this problem more
 //! pronounced. As a workaround, the double-precision `QuadOsc<f64>` can be used, which
-//! provides a significant increase in accuracy over phase steps and has relatively little
-//! impact on speed (compare `bench_osc32` and `bench_osc64` in the output of`cargo
-//! bench`.)
+//! provides a significant increase in accuracy across phase steps and has relatively
+//! little impact on speed (compare `bench_osc32` and `bench_osc64` in the output of
+//! `cargo bench`.)
 
 extern crate num;
 
