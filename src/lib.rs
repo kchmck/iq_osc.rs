@@ -47,8 +47,8 @@
 //!
 //! Due to the accumulation of floating-point roundoff errors, the accuracy of returned
 //! sine/cosine evaulations will slowly degrade over phase steps. Using a very small phase
-//! step or running a `QuadOsc` through many, many cycles will make this problem more
-//! pronounced. As a workaround, the double-precision `QuadOsc<f64>` can be used, which
+//! step or running a `IQOsc` through many, many cycles will make this problem more
+//! pronounced. As a workaround, the double-precision `IQOsc<f64>` can be used, which
 //! provides a significant increase in accuracy across phase steps and has relatively
 //! little impact on speed (compare `bench_osc32` and `bench_osc64` in the output of
 //! `cargo bench`.)
@@ -58,21 +58,21 @@ extern crate num;
 use num::Float;
 
 /// Quadrature oscillator with current phase Φ(t) and phase step ω.
-pub struct QuadOsc<T: Float> {
+pub struct IQOsc<T: Float> {
     /// Holds (sin ω, cos ω) for the phase step ω.
     step: (T, T),
     /// Holds (sin Φ(t), cos Φ(t)) for the current phase Φ(t).
     phase: (T, T),
 }
 
-impl<T: Float> QuadOsc<T> {
-    /// Create a new `QuadOsc` starting at the given initial phase θ<sub>0</sub> (in
+impl<T: Float> IQOsc<T> {
+    /// Create a new `IQOsc` starting at the given initial phase θ<sub>0</sub> (in
     /// radians) and with the given phase step ω (in radians).
     ///
     /// The first call to `next()` will then return (sin θ<sub>0</sub>, cos
     /// θ<sub>0</sub>).
     pub fn new(phase: T, step: T) -> Self {
-        QuadOsc {
+        IQOsc {
             step: step.sin_cos(),
             phase: phase.sin_cos(),
         }
@@ -106,7 +106,7 @@ mod test {
 
     #[test]
     fn test_osc() {
-        let mut o = QuadOsc::new(0.0, PI32 / 2.0);
+        let mut o = IQOsc::new(0.0, PI32 / 2.0);
 
         for _ in 0..100 {
             let (sin, cos) = o.next();
@@ -132,7 +132,7 @@ mod test {
         // Tests single precision error accumulation over a relatively large number of
         // iterations.
 
-        let mut o = QuadOsc::new(0.0, PI32 / 20.0);
+        let mut o = IQOsc::new(0.0, PI32 / 20.0);
 
         for _ in 0..1024 {
             let (sin, cos) = o.next();
@@ -302,7 +302,7 @@ mod test {
         // Tests double precision error accumulation over a relatively large number of
         // iterations.
 
-        let mut o = QuadOsc::new(0.0, PI64 / 20.0);
+        let mut o = IQOsc::new(0.0, PI64 / 20.0);
 
         for _ in 0..8192 {
             let (sin, cos) = o.next();
@@ -471,7 +471,7 @@ mod test {
     fn test_mult() {
         let m = 120;
         let common = 2.0 / 256 as f32 * PI32 * m as f32;
-        let mut osc = QuadOsc::new(common * -104 as f32, common);
+        let mut osc = IQOsc::new(common * -104 as f32, common);
 
         for n in -104..105 {
             let inner = 2.0 / 256 as f32 * PI32 * m as f32 * n as f32;

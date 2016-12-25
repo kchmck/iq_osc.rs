@@ -5,7 +5,7 @@ extern crate iq_osc;
 
 use std::f32::consts::PI as PI32;
 use std::f64::consts::PI as PI64;
-use iq_osc::QuadOsc;
+use iq_osc::IQOsc;
 
 #[bench]
 fn bench_trig32(b: &mut test::Bencher) {
@@ -430,7 +430,7 @@ fn bench_trig64(b: &mut test::Bencher) {
 #[bench]
 fn bench_osc32(b: &mut test::Bencher) {
     b.iter(|| {
-        let mut o = QuadOsc::new(0.0, PI32 / 20.0);
+        let mut o = IQOsc::new(0.0, PI32 / 20.0);
 
         for _ in 0..256 {
             let (sin, cos) = o.next();
@@ -599,7 +599,7 @@ fn bench_osc32(b: &mut test::Bencher) {
 #[bench]
 fn bench_osc64(b: &mut test::Bencher) {
     b.iter(|| {
-        let mut o = QuadOsc::new(0.0, PI64 / 20.0);
+        let mut o = IQOsc::new(0.0, PI64 / 20.0);
 
         for _ in 0..256 {
             let (sin, cos) = o.next();
