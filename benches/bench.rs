@@ -1,11 +1,11 @@
 #![feature(test)]
 
 extern crate test;
-extern crate quad_osc;
+extern crate iq_osc;
 
 use std::f32::consts::PI as PI32;
 use std::f64::consts::PI as PI64;
-use quad_osc::QuadOsc;
+use iq_osc::QuadOsc;
 
 #[bench]
 fn bench_trig32(b: &mut test::Bencher) {

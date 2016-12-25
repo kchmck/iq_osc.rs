@@ -1,6 +1,6 @@
-# quad\_osc.rs
+# iq\_osc.rs
 
-[Documentation](http://kchmck.github.io/doc/quad_osc/)
+[Documentation](http://kchmck.github.io/doc/iq_osc/)
 
 Given f(t) = cos(θ<sub>0</sub> + ωt) = cos Φ(t), an oscillator is defined here
 to evaluate f(0), f(1), f(2), ... in sequence to generate a sinusoidal signal.

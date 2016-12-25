@@ -1,5 +1,5 @@
 [package]
-name = "quad_osc"
+name = "iq_osc"
 version = "2.0.0"
 authors = ["Mick Koch <mick@kochm.co>"]
 
