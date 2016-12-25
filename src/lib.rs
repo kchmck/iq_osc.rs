@@ -50,8 +50,15 @@
 //! step or running a `IQOsc` through many, many cycles will make this problem more
 //! pronounced. As a workaround, the double-precision `IQOsc<f64>` can be used, which
 //! provides a significant increase in accuracy across phase steps and has relatively
-//! little impact on speed (compare `bench_osc32` and `bench_osc64` in the output of
-//! `cargo bench`.)
+//! little impact on speed – compare `bench_osc32` and `bench_osc64` in the output of
+//! `cargo bench` (example output is given below.)
+//!
+//! ```txt
+//! test bench_osc32  ... bench:      55,043 ns/iter (+/- 4,479)
+//! test bench_osc64  ... bench:      62,170 ns/iter (+/- 30,989)
+//! test bench_trig32 ... bench:     490,407 ns/iter (+/- 90,148)
+//! test bench_trig64 ... bench:   2,365,592 ns/iter (+/- 148,062)
+//! ```
 
 extern crate num;
 
