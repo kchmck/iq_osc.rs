@@ -47,7 +47,7 @@
 //!
 //! Due to the accumulation of floating-point roundoff errors, the accuracy of returned
 //! sine/cosine evaulations will slowly degrade over phase steps. Using a very small phase
-//! step or running a `IQOsc` through many, many cycles will make this problem more
+//! step or running an `IQOsc` through many, many cycles will make this problem more
 //! pronounced. As a workaround, the double-precision `IQOsc<f64>` can be used, which
 //! provides a significant increase in accuracy across phase steps and has relatively
 //! little impact on speed – compare `bench_osc32` and `bench_osc64` in the output of
