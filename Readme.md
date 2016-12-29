@@ -4,7 +4,7 @@
 
 Given f(t) = cos(θ<sub>0</sub> + ωt) = cos Φ(t), an oscillator is defined here
 to evaluate f(0), f(1), f(2), ... in sequence to generate a sinusoidal signal.
-Further, a quadrature oscillator also evaluates g(t) = sin(Φ(t)) at each step
+Further, a quadrature oscillator also evaluates g(t) = sin Φ(t) at each step
 for the quadrature signal.
 
 Computing these trig functions at each evaluation of f(t) and g(t) can be costly with
