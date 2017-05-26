@@ -65,6 +65,7 @@ extern crate num;
 use num::Float;
 
 /// Quadrature oscillator with current phase Φ(t) and phase step ω.
+#[derive(Copy, Clone)]
 pub struct IQOsc<T: Float> {
     /// Holds (sin ω, cos ω) for the phase step ω.
     step: (T, T),
