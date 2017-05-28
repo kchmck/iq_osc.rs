@@ -91,6 +91,11 @@ impl<T: Float> IQOsc<T> {
         self.step = step.sin_cos();
     }
 
+    /// Change the current phase to the given θ (in radians).
+    pub fn set_phase(&mut self, phase: T) {
+        self.phase = phase.sin_cos();
+    }
+
     /// Step the phase to Φ(t+1) and return (sin Φ(t), cos Φ(t)).
     pub fn next(&mut self) -> (T, T) {
         let cur = self.phase;
