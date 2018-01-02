@@ -2,6 +2,11 @@
 name = "iq_osc"
 version = "3.0.0"
 authors = ["Mick Koch <mick@kochm.co>"]
+description = "I/Q oscillator without trig function calls"
+license = "MIT"
+documentation = "https://docs.rs/iq_osc"
+repository = "https://github.com/kchmck/iq_osc.rs"
+keywords = ["iq", "oscillator", "trig", "waveform", "signal"]
 
 [dependencies]
 num-traits = "0.1"

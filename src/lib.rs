@@ -1,3 +1,5 @@
+//! I/Q oscillator without trig function calls.
+//!
 //! Given
 //!
 //! > f(t) = cos(θ<sub>0</sub> + ωt) = cos Φ(t),
