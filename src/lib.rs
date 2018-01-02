@@ -60,9 +60,9 @@
 //! test bench_trig64 ... bench:   2,365,592 ns/iter (+/- 148,062)
 //! ```
 
-extern crate num;
+extern crate num_traits;
 
-use num::Float;
+use num_traits::Float;
 
 /// Quadrature oscillator with current phase Φ(t) and phase step ω.
 #[derive(Copy, Clone)]
